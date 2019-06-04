@@ -11,6 +11,7 @@
 
 #include <yaml-cpp/yaml.h>
 
+#include <drake_robot_control/hand_driven_plan.h>
 #include <drake_robot_control/joint_space_trajectory_plan.h>
 #include <drake_robot_control/joint_space_streaming_plan.h>
 #include <drake_robot_control/plan_base.h>
@@ -183,6 +184,9 @@ private:
   bool HandleInitTaskSpaceStreamingServiceCall(
     robot_msgs::StartStreamingPlan::Request &req,
     robot_msgs::StartStreamingPlan::Response &res);
+  bool HandleInitHandDrivenServiceCall(
+    robot_msgs::StartStreamingPlan::Request &req,
+    robot_msgs::StartStreamingPlan::Response &res);
   void HandleJointSpaceStreamingSetpoint(
       const sensor_msgs::JointState::ConstPtr& msg);
   bool GetPlanNumber(const robot_msgs::GetPlanNumberGoal::ConstPtr &goal);
@@ -261,6 +265,8 @@ private:
     joint_space_streaming_plan_init_server_;
   std::shared_ptr<ros::ServiceServer>
     task_space_streaming_plan_init_server_;
+  std::shared_ptr<ros::ServiceServer>
+    hand_driven_plan_init_server_;
 
   // config
   YAML::Node config_;
