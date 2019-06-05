@@ -292,7 +292,7 @@ bool RobotPlanRunner::HandleInitHandDrivenServiceCall(
   }
 
   auto plan_local = std::make_shared<HandDrivenPlan>(
-      tree_, Eigen::VectorXd::Constant(kNumJoints_, 1.0), 10.0);
+      tree_, Eigen::VectorXd::Constant(kNumJoints_, 100.0), 0.0);
 
   // // Add ForceGuards if specified
   // if (req.force_guard.size() > 0) {
